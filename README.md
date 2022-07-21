@@ -7,7 +7,7 @@ This project helps end-users randomly generate a secured password based on crite
 ## URL
 ------
 
-copy and paste url if needed: 
+copy and paste url if needed: https://claud9855.github.io/Password-Generator/
 
 ## Screenshot
 -------------

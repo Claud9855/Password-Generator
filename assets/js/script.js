@@ -1,15 +1,14 @@
-// Assignment code here
 // function generate and return a new password
 var generatePassword = function (){
   alert("Welcome! You will pick from a series of criteria to generate a random password");
 
+  // Prompts the end-user to enter the length of the password
   var passwordLength = prompt("Enter the length of the password (at least 8 characters long and no more than 128 characters)\n\n");
 
   // validates user inputs for the length of password
   while(true){
     if(passwordLength === ""){
       alert("Empty input! Please enter a value!");
-      
     }
     else if(passwordLength === null){
       return;
@@ -27,7 +26,7 @@ var generatePassword = function (){
   // Prompt end-users to confirm whether or not to include lower case, upper case, numeric or special characters
   var confirmLowerCaseLetter = confirm("Do you want to include lower case letters?");
   var confirmUpperCaseLetter = confirm("Do you want to include upper case letters?");
-  var confirmDigitalCharacters = confirm("Do you want to include digital characters?");
+  var confirmNumericCharacters = confirm("Do you want to include numeric characters?");
   var confirmSpecialCharacters = confirm("Do you want to include special characters?");
 
   // Declared an empty string variable to store the generated password
@@ -39,17 +38,20 @@ var generatePassword = function (){
   // while loop is used to validate end-user inputs
   // It will keep looping until at least 1 criteria is selected
   while(true){
-    if(confirmLowerCaseLetter && confirmUpperCaseLetter && confirmDigitalCharacters && confirmSpecialCharacters) {
+
+    // Multi if-else if statements is used to determined which criteria was selected
+    // And Handles the codes for generating the new password based on the selected criteria
+    if(confirmLowerCaseLetter && confirmUpperCaseLetter && confirmNumericCharacters && confirmSpecialCharacters) {
       for(var i = 0; i < passwordLength; i++){
-        generatedCharacters = [getRandomDigitalCharacter(), getRandomLowerCaseLetter(), getRandomUpperCaseLetter(), getRandomSpecialCharacter()];
+        generatedCharacters = [getRandomNumericCharacter(), getRandomLowerCaseLetter(), getRandomUpperCaseLetter(), getRandomSpecialCharacter()];
         var randomIndex = Math.floor(Math.random() * generatedCharacters.length);
         password += generatedCharacters[randomIndex];
       }
       break;
     }
-    else if(confirmLowerCaseLetter && confirmUpperCaseLetter && confirmDigitalCharacters){
+    else if(confirmLowerCaseLetter && confirmUpperCaseLetter && confirmNumericCharacters){
       for(var i = 0; i < passwordLength; i++){
-        generatedCharacters = [getRandomDigitalCharacter(), getRandomLowerCaseLetter(), getRandomUpperCaseLetter()];
+        generatedCharacters = [getRandomNumericCharacter(), getRandomLowerCaseLetter(), getRandomUpperCaseLetter()];
         var randomIndex = Math.floor(Math.random() * generatedCharacters.length);
         password += generatedCharacters[randomIndex];
       }
@@ -64,18 +66,18 @@ var generatePassword = function (){
       }
       break;
     }
-    else if(confirmLowerCaseLetter && confirmDigitalCharacters && confirmSpecialCharacters){
+    else if(confirmLowerCaseLetter && confirmNumericCharacters && confirmSpecialCharacters){
       for(var i = 0; i < passwordLength; i++){
-        generatedCharacters = [getRandomDigitalCharacter(), getRandomLowerCaseLetter(), getRandomSpecialCharacter()];
+        generatedCharacters = [getRandomNumericCharacter(), getRandomLowerCaseLetter(), getRandomSpecialCharacter()];
         var randomIndex = Math.floor(Math.random() * generatedCharacters.length);
         password += generatedCharacters[randomIndex];
 
       }
       break;
     }
-    else if(confirmUpperCaseLetter && confirmDigitalCharacters && confirmSpecialCharacters){
+    else if(confirmUpperCaseLetter && confirmNumericCharacters && confirmSpecialCharacters){
       for(var i = 0; i < passwordLength; i++){
-        generatedCharacters = [getRandomDigitalCharacter(), getRandomUpperCaseLetter(), getRandomSpecialCharacter()];
+        generatedCharacters = [getRandomNumericCharacter(), getRandomUpperCaseLetter(), getRandomSpecialCharacter()];
         var randomIndex = Math.floor(Math.random() * generatedCharacters.length);
         password += generatedCharacters[randomIndex];
 
@@ -90,9 +92,9 @@ var generatePassword = function (){
       }
       break;
     }
-    else if(confirmLowerCaseLetter && confirmDigitalCharacters){
+    else if(confirmLowerCaseLetter && confirmNumericCharacters){
       for(var i = 0; i < passwordLength; i++){
-        generatedCharacters = [getRandomLowerCaseLetter(), getRandomDigitalCharacter()];
+        generatedCharacters = [getRandomLowerCaseLetter(), getRandomNumericCharacter()];
         var randomIndex = Math.floor(Math.random() * generatedCharacters.length);
         password += generatedCharacters[randomIndex];
       }
@@ -106,9 +108,9 @@ var generatePassword = function (){
       }
       break;
     }
-    else if(confirmUpperCaseLetter && confirmDigitalCharacters){
+    else if(confirmUpperCaseLetter && confirmNumericCharacters){
       for(var i = 0; i < passwordLength; i++){
-        generatedCharacters = [getRandomUpperCaseLetter(), getRandomDigitalCharacter()];
+        generatedCharacters = [getRandomUpperCaseLetter(), getRandomNumericCharacter()];
         var randomIndex = Math.floor(Math.random() * generatedCharacters.length);
         password += generatedCharacters[randomIndex];
       }
@@ -122,9 +124,9 @@ var generatePassword = function (){
       }
       break;
     }
-    else if(confirmDigitalCharacters && confirmSpecialCharacters){
+    else if(confirmNumericCharacters && confirmSpecialCharacters){
       for(var i = 0; i < passwordLength; i++){
-        generatedCharacters = [getRandomDigitalCharacter(), getRandomSpecialCharacter()];
+        generatedCharacters = [getRandomNumericCharacter(), getRandomSpecialCharacter()];
         var randomIndex = Math.floor(Math.random() * generatedCharacters.length);
         password += generatedCharacters[randomIndex];
       }
@@ -144,9 +146,9 @@ var generatePassword = function (){
       }
       break;
     }
-    else if(confirmDigitalCharacters){
+    else if(confirmNumericCharacters){
       for(var i = 0; i < passwordLength; i++){
-        generatedCharacters = getRandomDigitalCharacter();
+        generatedCharacters = getRandomNumericCharacter();
         password += generatedCharacters;
       }
       break;
@@ -162,10 +164,12 @@ var generatePassword = function (){
       alert("No criteria was selected! At least 1 criteria is required!");
       confirmLowerCaseLetter = confirm("Do you want to include lower case letters?");
       confirmUpperCaseLetter = confirm("Do you want to include upper case letters?");
-      confirmDigitalCharacters = confirm("Do you want to include digital characters?");
+      confirmNumericCharacters = confirm("Do you want to include numeric characters?");
       confirmSpecialCharacters = confirm("Do you want to include special characters?");
     }
   }
+
+  // returns a randomly generated password as a string type
   return password;
 }
 
@@ -184,8 +188,8 @@ var getRandomUpperCaseLetter = function() {
   return String.fromCodePoint(generateRandomCharacter('A', 'Z'));
 }
 
-// Generate a random digital character
-var getRandomDigitalCharacter = function() {
+// Generate a random numeric character
+var getRandomNumericCharacter = function() {
   return String.fromCodePoint(generateRandomCharacter('0', '9'));
 }
 
